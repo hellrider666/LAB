@@ -1,0 +1,44 @@
+﻿@model LAB.Models.Ingredients
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Ingredients</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm())
+        {
+            <fieldset>
+                <div class="form-group">
+                    <label asp-for="FinishedProducts" class="control-label"></label>
+                    @Html.DropDownListFor(model => model.FinishedProductsId, ViewBag.Products as SelectList)
+                </div>
+           <div class="form-group">
+            <label asp-for="Raws" class="control-label"></label>
+            @Html.DropDownListFor(model => model.RawsId, ViewBag.Raw as SelectList)
+          </div>       
+           <div class="form-group">
+               <label asp-for="Quantity" class="control-label"></label>
+               
+               @Html.EditorFor(model => model.Quantity)
+
+           </div>
+          <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+          </div>
+        </fieldset>
+    }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

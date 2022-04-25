@@ -1,0 +1,42 @@
+﻿@model LAB.ViewModels.SellsViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Sell</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select asp-items="Model.FinProducts" name="finprod" value="@Model.SelectedProd" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <select asp-items="Model.Employees" name="emp" value="@Model.SelectedEmp" class="form-control"></select>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Количество: </label>
+                <input asp-for="Quantity" name="quan" value="@Model.Quantity" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                @Html.DisplayFor(Model => Model.errorText)
+            </div>
+        </form>
+</div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

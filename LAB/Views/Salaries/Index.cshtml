@@ -1,0 +1,79 @@
+﻿@model LAB.ViewModels.SalaryViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <form method="get">
+        <div class="form-inline form-group">
+            <label class="control-label">Готовая Продукция: </label>
+            <select asp-items="Model.Month" name="monthNumber" value="@Model.SelectMonth" class="form-control"></select>
+            <select asp-items="Model.Confrirmed" name="conf" value="@Model.confirmedIndex" class="form-control"></select>
+            @*  @Html.DropDownListFor(m=>m.SelectedProduct, Model.FinalProducts, new { @class = "form-control" })*@
+            <input type="submit" value="Фильтр" class="btn btn-default" />
+        </div>
+    </form>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Сотрудник")
+            </th>
+            <th>
+                @Html.DisplayName("Кол-во выполненой работы")
+            </th>
+            <th>
+                @Html.DisplayName("Месяц")
+            </th>
+            <th>
+                @if (Model.confirmedIndex == null)
+                {
+                    @Html.DisplayName("Все")
+                }
+                else if (Model.confirmedIndex == true)
+                {
+                   @Html.DisplayName("Сумма после ограбления")
+                }
+                else
+                {
+                   @Html.DisplayName("Сумма до ограбления")
+                }
+            </th>
+            <th>
+                @Html.DisplayName("Оплачено")
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model._salaries)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountOfWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Confirm)
+            </td>
+            <td>
+                @if (item.Confirm == false)
+                {
+                    <a asp-action="Create" asp-route-id="@item.Id">Оплатить</a>               
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

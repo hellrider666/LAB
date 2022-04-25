@@ -1,0 +1,63 @@
+﻿@model LAB.Models.Salary
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style type="text/css">
+    .red {
+        color: red;
+    }
+</style>
+
+<script src="~/js/fix.js"></script>
+
+<h1>Create</h1>
+<div>
+<h4>Salary</h4>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Employee)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Employee.Name)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.CountOfWork)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.CountOfWork)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FinishSalary)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FinishSalary)
+    </dd>
+    <div class="col-sm-10">
+        <label>Итоговая сумма выплаты с учетом рабочих дней и выходных</label>
+       <span id="sum">@ViewData["FinalSalary"]</span>
+    </div>
+    <div class="col-sm-10">
+        <label>Кол-во рабочих дней в этом месяце </label>
+        @ViewData["CountOfWorkDays"]
+    </div>
+    <div class="red col-sm-10">
+        @Html.Raw(ViewBag.text)
+    </div>
+</div>
+</dl>
+<form asp-action="Create">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Create" class="btn btn-danger" />   
+</form>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<LAB.Models.Budget>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CountOfBudget)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Income_Tax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unioin_Tax)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountOfBudget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Income_Tax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unioin_Tax)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

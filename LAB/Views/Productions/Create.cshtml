@@ -1,0 +1,58 @@
+﻿@model LAB.ViewModels.productionViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<script src="~/js/Products.js"></script>
+
+<h1>Create</h1>
+<style type="text/css">
+    li {
+        display: inline-block;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .red {
+        color: red;
+    }
+</style>
+<h4>PurchaseRaw</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <label class="control-label">Продукт: </label>
+            <select id="products" asp-items="Model.Products" name="prod" value="@Model.SelectProduct" class="form-control" onchange="onProductChange();"></select>
+            <div>
+                <label class="control-label">Ингридиенты: </label>
+                <label id="ingridients" class="control-label"> </label>
+            </div>                       
+            <label class="control-label">Сотрудник: </label>
+            <select asp-items="Model.Employees" name="emp" value="@Model.SelectEmployee" class="form-control"></select>
+            
+            <label class="control-label">Количество: </label>
+            <input asp-for="quan" name="quan" value="@Model.quan" class="form-control">
+            <ul>
+                <li class="red"> @Html.DisplayFor(Model => Model.errorText)</li>
+            </ul>
+
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
